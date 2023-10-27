@@ -1,0 +1,27 @@
+1. Renee Liu (Team Leader) - reneel3
+Ammara Ashraf - aashra5
+Shihab Siddique - shihabs2
+
+2. Theme 1:
+Topic: Web Scraping Top N Recipe Pages 
+This is a problem because oftentimes users spend too much time looking through recipe pages just to realize they may not have all the ingredients required. Through web scraping, users can get the important information needed and only navigate to the relevant pages.
+This relates to the theme because we are leveraging queries and content-based filtering in order to recommend recipes based on the user’s preference in ingredients and dietary restrictions for a particular recipe of choice.
+
+3. We will use the following techniques:
+We will use a Web Crawler to browse the first n-links provided by Chrome. The Crawler will extract only the relevant information for the user to choose which link they would like to follow.
+From there, we will use BM25 to rank web pages based on keywords chosen by program based on user’s input
+
+4. We will demonstrate our approach is working by returning a small dataset of relevant information to the user. This will allow the user to only click and scroll through the one link rather than many, saving them time.
+
+5. We plan to use a combination of Python and JavaScript for both the front-end and back-end.
+
+6. ~60 hours of work
+Create Chrome extension ~ (5 hours)
+Get user input through form ~ (10 hours)
+Store in database server ~ (8 hours)
+Web crawl using Google File System and MapReduce ~ (15 hours)
+Simplify information to only relevant data to user ~ (7 hours)
+Rank links with BM25 ~ (7 hours)
+Present to User in summary form ~ (6 hours)
+Documentation ~ (3 hours)
+Revise for efficiency ~ (5 hours)
