@@ -1,0 +1,11 @@
+{
+    "name": "Alphabet Soup",
+    "version": "1.0.0",
+    "description": "Web Scraping Top N Recipe Pages",
+    "manifest_version": 3,
+    "author": "Renee Liu",
+    "action":{
+        "default_popup": "index.html",
+        "default_title": "Top N Recipes"
+    }
+}
