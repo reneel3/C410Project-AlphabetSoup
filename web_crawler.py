@@ -1,0 +1,44 @@
+import requests
+from bs4 import BeautifulSoup
+
+# Google for pumpkin pie recipes
+search = "https://www.google.com/search?q=pumpkin+pie+recipes&rlz=1C5CHFA_enUS989US989&oq=pumpkin+pie+recipes&gs_lcrp=EgZjaHJvbWUyDwgAEEUYORiDARixAxiABDIHCAEQABiABDIHCAIQABiABDIHCAMQABiABDIHCAQQABiABDIHCAUQABiABDIHCAYQABiABDIHCAcQABiABDIHCAgQABiABDIHCAkQABiABNIBCDM0OTlqMWo3qAIAsAIA&sourceid=chrome&ie=UTF-8"
+
+response = requests.get(search)
+soup = BeautifulSoup(response.content, "html.parser")
+links = soup.select("a[href]")
+
+urls = []
+recipes = {}
+# Selects First Ten Secure Recipe Links
+i = 0
+for link in links:
+    if i < 10:
+        url = link['href']
+        if "https://" in url:
+            if not "google" in url:
+                if url.startswith("/url?q="):
+                    url = url[7:]
+                urls.append(url)
+                i += 1
+        
+                resp = requests.get(url)
+                html = BeautifulSoup(resp.content, "html.parser")
+                product = {}
+                product["url"] = url
+                product["title"] = html.select_one('title')
+                print(product["title"])
+    else:
+        break
+
+
+
+
+
+    
+
+    
+
+
+
+
