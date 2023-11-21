@@ -7,5 +7,11 @@
     "action":{
         "default_popup": "index.html",
         "default_title": "Top N Recipes"
-    }
+    },
+    "icons": {
+        "16": "assets/abcicon.png",
+        "32": "assets/abcicon.png",
+        "48": "assets/abcicon.png",
+        "128": "assets/alphabetsoupicon.png"
+      }
 }
