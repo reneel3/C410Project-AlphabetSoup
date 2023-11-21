@@ -1,17 +1,19 @@
 {
-    "name": "Alphabet Soup",
-    "version": "1.0.0",
-    "description": "Web Scraping Top N Recipe Pages",
-    "manifest_version": 3,
-    "author": "Renee Liu",
-    "action":{
-        "default_popup": "index.html",
-        "default_title": "Top N Recipes"
-    },
-    "icons": {
-        "16": "assets/abcicon.png",
-        "32": "assets/abcicon.png",
-        "48": "assets/abcicon.png",
-        "128": "assets/alphabetsoupicon.png"
-      }
+  "name": "Alphabet Soup",
+  "description": "Web Scraping Top N Recipe Pages",
+  "version": "1.0",
+  "manifest_version": 3,
+  "icons": {
+    "16": "assets/abc-icon.png",
+    "32": "assets/abc-icon.png",
+    "48": "assets/abc-icon.png",
+    "128": "assets/abc-icon.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "assets/abc-icon.png"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'"
+  }
 }
