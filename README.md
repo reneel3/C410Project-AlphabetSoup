@@ -5,3 +5,6 @@
 3. Press `Load unpacked` button
 4. Select the folder with this cloned repo
 5. Click the puzzle piece on the top right to see your new **Alphabet Soup** extension
+
+---
+Source Code: https://github.com/PFython/pyscript-local-runtime
