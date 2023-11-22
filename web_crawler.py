@@ -1,5 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
+from selenium import webdriver
+
 
 # Google for pumpkin pie recipes
 search = "https://www.google.com/search?q=pumpkin+pie+recipes&rlz=1C5CHFA_enUS989US989&oq=pumpkin+pie+recipes&gs_lcrp=EgZjaHJvbWUyDwgAEEUYORiDARixAxiABDIHCAEQABiABDIHCAIQABiABDIHCAMQABiABDIHCAQQABiABDIHCAUQABiABDIHCAYQABiABDIHCAcQABiABDIHCAgQABiABDIHCAkQABiABNIBCDM0OTlqMWo3qAIAsAIA&sourceid=chrome&ie=UTF-8"
@@ -32,12 +34,24 @@ for link in links:
         break
 
 
+def launch_browser():
+    driver = webdriver.Chrome()
+    driver.get("https://www.google.com/")
+
+    get_url = driver.current_url
+    print("The current url is:" + str(get_url))
+    #driver.quit()
+    while(True):
+        pass
+
+
+launch_browser()
 
 
 
-    
 
-    
+
+
 
 
 
