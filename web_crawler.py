@@ -38,10 +38,10 @@ def launch_browser():
     driver = webdriver.Chrome()
     driver.get("https://www.google.com/")
 
-    get_url = driver.current_url
-    print("The current url is:" + str(get_url))
     #driver.quit()
     while(True):
+        get_url = driver.current_url
+        print("The current url is:" + str(get_url))
         pass
 
 
