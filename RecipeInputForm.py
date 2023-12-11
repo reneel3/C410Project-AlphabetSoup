@@ -11,7 +11,6 @@ isNutAllergySelected = IntVar()
 
 def runWebCrawler():
     INPUT = queryInput.get("1.0", "end-1c")
-    print(INPUT)
     output.insert(END, INPUT + ' ')
     output.insert(END, str(isVegetarianSelected.get()) + ' ')
     output.insert(END, str(isGlutenFreeSelected.get()) + ' ')
