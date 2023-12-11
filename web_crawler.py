@@ -33,19 +33,19 @@ for link in links:
     else:
         break
 
+class WebCrawler():
+    def launch_browser():
+        driver = webdriver.Chrome()
+        driver.get("https://www.google.com/")
 
-def launch_browser():
-    driver = webdriver.Chrome()
-    driver.get("https://www.google.com/")
-
-    #driver.quit()
-    while(True):
-        get_url = driver.current_url
-        print("The current url is:" + str(get_url))
-        pass
+        #driver.quit()
+        while(True):
+            get_url = driver.current_url
+            print("The current url is:" + str(get_url))
+            pass
 
 
-launch_browser()
+WebCrawler.launch_browser()
 
 
 
