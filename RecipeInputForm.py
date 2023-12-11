@@ -1,29 +1,74 @@
-from __init__ import *
+from tkinter import *
+from tkinter import ttk
+ 
+root = Tk() 
+root.geometry("300x500") 
+win = Label(root, text ='Web Scrape Top N Recipes', font = "50")  
+win.pack()
+isVegetarianSelected = IntVar()   
+isGlutenFreeSelected = IntVar()   
+isNutAllergySelected = IntVar() 
 
-class RecipeInputForm(BaseWidget):
+def runWebCrawler():
+    INPUT = queryInput.get("1.0", "end-1c")
+    print(INPUT)
+    output.insert(END, INPUT + ' ')
+    output.insert(END, str(isVegetarianSelected.get()) + ' ')
+    output.insert(END, str(isGlutenFreeSelected.get()) + ' ')
+    output.insert(END, str(isNutAllergySelected.get()) + ' ')
+    output.insert(END, '\n')
 
-    def __init__(self):
-        super(RecipeInputForm,self).__init__('Recipe Input Form')
+     
+queryLabel = Label(text = "Query")
+queryInput = Text(root, height = 5,
+                width = 25,
+                bg = "light yellow")
 
-        #Definition of the forms fields
-        self._query     = ControlText('Query')
-        self._dietaryRestrictions = ControlCheckBoxList('Dietary Restrictions')
-        self._dietaryRestrictions.value = [('Vegetarian', False) , ('Gluten Free', False), ('Nut Allergy', False)]
-        self._button        = ControlButton('Press this button')
-        
-        #Define the organization of the forms
-        self.formset = [ '_query', '_dietaryRestrictions', '_button', ' ']
-        #The ' ' is used to indicate that a empty space should be placed at the bottom of the window
-        #If you remove the ' ' the forms will occupy the entire window
+dietaryRestriction = Label(text = "Dietary Restrictions")
+vegetarian = Checkbutton(root, text = "Vegetarian",  
+                      variable = isVegetarianSelected, 
+                      onvalue = 1, 
+                      offvalue = 0, 
+                      height = 2, 
+                      width = 10) 
+  
+glutenFree = Checkbutton(root, text = "Gluten Free", 
+                      variable = isGlutenFreeSelected, 
+                      onvalue = 1, 
+                      offvalue = 0, 
+                      height = 2, 
+                      width = 10) 
+  
+nutAllergy = Checkbutton(root, text = "Nut Allergy", 
+                      variable = isNutAllergySelected, 
+                      onvalue = 1, 
+                      offvalue = 0, 
+                      height = 2, 
+                      width = 10) 
+  
+outputLabel = Label(text = "Display Input")
+output = Text(root, height = 5, 
+              width = 25, 
+              bg = "light cyan")
 
-        #Define the button action
-        self._button.value = self.__buttonAction
+display = Button(root, height = 2,
+                 width = 20, 
+                 text ="Submit Form",
+                 command = lambda:runWebCrawler())
 
-    def __buttonAction(self):
-        """Button action event"""
-        from web_crawler import WebCrawler
-        WebCrawler.launch_browser()
+submit = Button(root, text = 'Quit', bd = '5',
+                          command = root.destroy) 
 
+queryLabel.pack()
+queryInput.pack()  
+dietaryRestriction.pack()
+vegetarian.pack()   
+glutenFree.pack()   
+nutAllergy.pack() 
+display.pack()
+outputLabel.pack()
+output.pack()
 
-#Execute the application
-if __name__ == "__main__":   pyforms.start_app( RecipeInputForm )
+submit.pack(side = 'bottom')    
+  
+mainloop()  
