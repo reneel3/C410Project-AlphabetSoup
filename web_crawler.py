@@ -30,10 +30,11 @@ def crepes(query, num):
 
 
 
-def rankData(query, num):
+def rankData(query, num, ingredients):
 
     doc = crepes(query, num)
     bmScores = {}
+    print("doc: ", doc)
 
     for key in doc:
         print("key", key)
@@ -47,18 +48,20 @@ def rankData(query, num):
         print("tokenized_corpus: ", tokenized_corpus)
 
         bm25 = BM25Okapi(tokenized_corpus)
-        tokenized_query = query.lower().split(" ")
+        tokenized_query = query.lower().split(" ") + ingredients
+        print("tokenized_query: ", tokenized_query)
+
 
         doc_scores = bm25.get_scores(tokenized_query)
-        print(doc_scores)
+        doc_scores = abs(float(doc_scores[0]))
 
-        bmScores[key] = abs(float(doc_scores))
+        bmScores[key] = doc_scores
         finalBM = sorted(bmScores.items(), key=lambda x:x[1], reverse=True)
 
         print("bmScores: ", finalBM)
-        return bmScores
-
-        #bm25.get_top_n(tokenized_query, corpus, n=num)
+    return finalBM
 
 
-rankData("pumpkin pie recipes", 10)
+
+ingredients = ["pumpkin", "butter"]
+rankData("pumpkin pie recipes", 10, ingredients)
