@@ -34,39 +34,40 @@ def crepes(query, num):
 
 
 
-
+# This function takes in the output from the crepes function and compares each doc or 'corpus' to the query
+# It then calculates the bm25 score and returns a dictionary of the title and link of the documents in ranked order
+# from best options to worst
 def rankData(query, num, ingredients):
 
-    doc = crepes(query, num)
     bmScores = {}
-    print("doc: ", doc)
     titles = {}
     finalBM = {}
 
+    # calling crepes function with the query and num of results to get parsed data
+    doc = crepes(query, num)
+
+    # iterating through the dictionary returned by crepes function
     for key in doc:
         newdoc = doc[key]['recipe']
         title = doc[key]['title']
         titles[key] = title
 
+        # creating corpus, cleaning, tokenizing it, and running bm25 on it
         corpus = [newdoc.translate(str.maketrans('', '', string.punctuation)).replace('\n',"").lower()]
         tokenized_corpus = [doc.split(" ") for doc in corpus]
-
         bm25 = BM25Okapi(tokenized_corpus)
-        tokenized_query = query.lower().split(" ") + ingredients
 
+        # tokenizing query, running bm25 on it, then truncating values, getting the abs value of it, and populating dict
+        tokenized_query = query.lower().split(" ") + ingredients
         doc_scores = bm25.get_scores(tokenized_query)
         doc_scores = abs(float(doc_scores[0]))
-
         bmScores[key] = doc_scores
 
+    # sorting dictionary by highest bm scores to lowest
     finalBM = dict(sorted(bmScores.items(), key=lambda item: item[1], reverse=True))
 
+    # reorganizing dict to include the title since that is needed for final product
     for key in finalBM:
         finalBM[key] = titles[key]
 
     return finalBM
-
-
-
-# ingredients = ["pumpkin", "butter"]
-# rankData("pumpkin pie recipes", 3, ingredients)
