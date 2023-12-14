@@ -3,6 +3,8 @@
 ```
 pip install selenium  
 pip instal bs4
+pip install rank_bm25
+
 ```
 
 
