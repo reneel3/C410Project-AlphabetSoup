@@ -1,14 +1,13 @@
 # C410Project-AlphabetSoup
 ## Installation
 ```
-pip install selenium  
-pip instal bs4
 pip install rank_bm25
 
 ```
 
 
 ## Get Started
+This program runs on Python 3.9
 Run the RecipeInputForm.py  
 `python RecipeInputForm.py`
 
