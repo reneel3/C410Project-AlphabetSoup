@@ -58,6 +58,7 @@ def rankData(query, num, ingredients):
         bm25 = BM25Okapi(tokenized_corpus)
 
         # tokenizing query, running bm25 on it, then truncating values, getting the abs value of it, and populating dict
+        # adding the preferred ingredients to the query
         tokenized_query = query.lower().split(" ") + ingredients
         doc_scores = bm25.get_scores(tokenized_query)
         doc_scores = abs(float(doc_scores[0]))
