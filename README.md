@@ -1,5 +1,9 @@
 # C410Project-AlphabetSoup
 
+## Presentation
+
+View our presentation here : https://uillinoisedu-my.sharepoint.com/personal/reneel3_illinois_edu/_layouts/15/stream.aspx?id=%2Fpersonal%2Freneel3%5Fillinois%5Fedu%2FDocuments%2FRecordings%2FProject%20Proposal%20Meeting%2D20231215%5F165642%2DMeeting%20Recording%2Emp4&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview&ga=1
+
 ## Overview
 
 Our Project is called Alphabet Soup. We were inspired by the trouble it takes for one to find a recipe that best suits their needs, such as their dietary restrictions or current ingredients on hand. We decided that we would solve this problem by creating an all-in-one dynamic program that would take all these factors into mind. By combining our diverse skillset and creative minds, we came together to create a mechanism that mimics a Google search query. Users would be able to enter the recipe of their choice, along with any dietary restrictions they may have, plus their preferred ingredients to cook with. Our program would take all these factors into consideration and then use a variety of Python packages to provide a ranked list of URLs with recipes that best suit the users' tastes.
