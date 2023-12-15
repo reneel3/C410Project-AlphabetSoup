@@ -2,27 +2,35 @@ from tkinter import *
 from tkinter import ttk
 from web_crawler import rankData
 
+# Create root window
 root = Tk() 
 root.geometry("300x600") 
 root.title("Web Scraper")
 win = Label(root, text ='Web Scrape Top N Recipes', font = "50")  
 win.pack()
+
+# Init dietary restricions combobox values
 isVegetarianSelected = IntVar()
 isGlutenFreeSelected = IntVar()
 isLatoseIntoleranceSelected = IntVar()
 isNutAllergySelected = IntVar()
 
 def runWebCrawler():
+    # Build the query
     recipe = recipeInput.get("1.0", "end-1c")
     ingredients = str(ingredientsInput.get("1.0", "end-1c")).split(",")
     query = recipe + ' recipes' + (' vegetarian' if isVegetarianSelected.get() == 1 else '') + (' gluten free' if isGlutenFreeSelected.get() == 1 else '') + (' dairy free' if isLatoseIntoleranceSelected.get() == 1 else '') + (' nut free' if isNutAllergySelected.get() == 1 else '')
 
+    # Display user query
     output.insert(END, query)
     output.insert(END, '\n')
 
     numRecipes = int(numRecipesInput.get("1.0", "end-1c"))
+    # Call the webcrawler
     results = rankData(query, numRecipes, ingredients)
     print(results)
+
+    # Build the popup window to display the results
     displayWin = Toplevel(root)
     displayWin.geometry('700x200')
     displayWin.title('Ranked List Of Results')
@@ -33,45 +41,47 @@ def runWebCrawler():
     buildResultTable(displayWin, results)
     displayWin.grab_set()
       
+# For the popup window to display results
 def buildResultTable(window, results):
-    game_frame = Frame(window)
-    game_frame.pack()
+    frame = Frame(window)
+    frame.pack()
 
-    #scrollbar
-    game_scroll = Scrollbar(game_frame)
-    game_scroll.pack(side=RIGHT, fill=Y)
+    # Scrollbar
+    scroll_bar = Scrollbar(frame)
+    scroll_bar.pack(side=RIGHT, fill=Y)
 
-    my_game = ttk.Treeview(game_frame,yscrollcommand=game_scroll.set)
+    results_table = ttk.Treeview(frame,yscrollcommand=scroll_bar.set)
 
-    my_game.pack()
+    results_table.pack()
 
-    game_scroll.config(command=my_game.yview)
+    scroll_bar.config(command=results_table.yview)
   
-    #define our column
+    # Define our column
     
-    my_game['columns'] = ('rank', 'title', 'link')
+    results_table['columns'] = ('rank', 'title', 'link')
 
-    # format our column
-    my_game.column("#0", width=0,  stretch=NO)
-    my_game.column("rank",anchor=CENTER, width=80)
-    my_game.column("title",anchor=SW,width=200)
-    my_game.column("link",anchor=SW,width=500)
+    # Format our column
+    results_table.column("#0", width=0,  stretch=NO)
+    results_table.column("rank",anchor=CENTER, width=80)
+    results_table.column("title",anchor=SW,width=200)
+    results_table.column("link",anchor=SW,width=500)
 
-    #Create Headings 
-    my_game.heading("#0",text="",anchor=CENTER)
-    my_game.heading("rank",text="Rank",anchor=CENTER)
-    my_game.heading("title",text="Title",anchor=SW)
-    my_game.heading("link",text="Link",anchor=SW)
-    my_game.bind('<ButtonRelease>', lambda e: copyLink(my_game, e))
+    # Create Headings 
+    results_table.heading("#0",text="",anchor=CENTER)
+    results_table.heading("rank",text="Rank",anchor=CENTER)
+    results_table.heading("title",text="Title",anchor=SW)
+    results_table.heading("link",text="Link",anchor=SW)
+    results_table.bind('<ButtonRelease>', lambda e: copyLink(results_table, e))
 
-    #add data 
+    # Add results data 
     rank = 1
     for key, value in results.items():
-        my_game.insert(parent='',index='end',iid=(rank-1),text=key,
+        results_table.insert(parent='',index='end',iid=(rank-1),text=key,
         values=(rank, value, key))
         rank += 1
-    my_game.pack()
+    results_table.pack()
 
+# When a row in results_table is clicked, copy the row's link into clipboard
 def copyLink(tree, event):
     curItem = tree.focus()
     item = tree.item(curItem)
@@ -80,7 +90,7 @@ def copyLink(tree, event):
     root.clipboard_append(item['text'])
 
 
-################# Build Form #######################
+################# Build Form for Root Window #######################
 recipeLabel = Label(text = "Desired Recipe")
 recipeInput = Text(root, height = 2,
                 width = 25,
@@ -140,6 +150,7 @@ warningLabel = Label(text = "Cooking up your recipes may take a while...",bg="pi
 submit = Button(root, text = 'Quit', bd = '5',
                           command = root.destroy) 
 
+###### Package Elements Into Root Window ########
 recipeLabel.pack()
 recipeInput.pack()
 numRecipesLabel.pack()
@@ -157,5 +168,5 @@ outputLabel.pack()
 output.pack()
 
 submit.pack(side = 'bottom')    
-  
+
 mainloop()  
