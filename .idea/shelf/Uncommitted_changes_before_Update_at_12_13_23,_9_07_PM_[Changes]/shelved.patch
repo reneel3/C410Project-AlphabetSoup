@@ -1,0 +1,19 @@
+Index: README.md
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+># C410Project-AlphabetSoup\n## Installation\n```\npip install selenium  \npip instal bs4\n```\n\n\n## Get Started\nRun the RecipeInputForm.py  \n`python RecipeInputForm.py`\n\n---\nSource Code: https://github.com/PFython/pyscript-local-runtime\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/README.md b/README.md
+--- a/README.md	(revision c7e03ae13dd445ce798cdfe9cb4309f0d630dd6d)
++++ b/README.md	(date 1702519625014)
+@@ -3,6 +3,8 @@
+ ```
+ pip install selenium  
+ pip instal bs4
++pip install rank_bm25
++
+ ```
+ 
+ 
